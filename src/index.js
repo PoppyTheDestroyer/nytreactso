@@ -82,7 +82,7 @@ class App extends Component {
         </form>
         <ArticleList articles={this.state.articles}>
         {this.state.articles.map(article =>
-        <ArticleListItem key={article._id}><div><a href={article.web_url}>{article.headline.main}</a></div><div>{moment(article.pub_date).format("MMMM DD YYYY")}</div><AddBtn /></ArticleListItem>)}
+        <ArticleListItem key={article._id}><div><a href={article.web_url} target="_blank">{article.headline.main}</a></div><div>{moment(article.pub_date).format("MMMM DD YYYY")}</div><AddBtn /></ArticleListItem>)}
         
          </ArticleList>
       </div>
