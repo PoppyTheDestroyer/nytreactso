@@ -6,9 +6,13 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "moment": "^2.20.1",
     "mongoose": "^5.0.7",
+    "newyorktimes": "0.0.2",
+    "npm": "^5.7.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1"
   },
   "scripts": {
@@ -16,5 +20,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmsaenz5/nytreactso.git"
+  },
+  "author": "JMS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmsaenz5/nytreactso/issues"
+  },
+  "homepage": "https://github.com/jmsaenz5/nytreactso#readme"
 }
