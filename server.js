@@ -7,7 +7,9 @@ const PORT = process.env.PORT || 5001;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static("client/build"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 app.use(routes);
 
 mongoose.Promise = global.Promise;
