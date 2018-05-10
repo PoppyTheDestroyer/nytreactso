@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { SearchBar } from "../components/search_bar";
-import { NumberInput } from "../components/number_input";
+import Form from "../components/Form";
 import { ArticleList } from "../components/article_list";
 import { ArticleListItem } from "../components/article_list_item";
-import SearchBtn from "../components/search_btn";
 import AddBtn from "../components/add_btn";
 import API from "../utils/API";
+import { Col, Row, Container } from "../components/Grid";
+import Panel from "../components/Panel";
 import moment from "moment";
 
 let year = moment().year();
@@ -53,7 +53,9 @@ class Articles extends Component {
   };
 
   loadArticles = () => {
-    API.getArticles().then(() => this.setState({savedArticles: this.article}));
+    API.getArticles().then(() =>
+      this.setState({ savedArticles: this.article })
+    );
     console.log(this.savedArticles);
   };
 
@@ -74,48 +76,36 @@ class Articles extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <label htmlFor="term">Search</label>
-          <SearchBar
-            className="col-md-4"
-            value={this.state.term}
-            name="term"
-            onChange={this.handleInputChange}
-          />
-          <br />
-          <label htmlFor="begin">Start Date (Optional)</label>
-          <NumberInput
-            className="col-md-4"
-            value={this.state.begin}
-            name="begin"
-            onChange={this.handleInputChange}
-          />
-          <br />
-          <label htmlFor="end">End Date (Optional)</label>
-          <NumberInput
-            className="col-md-4"
-            value={this.state.end}
-            name="end"
-            onChange={this.handleInputChange}
-          />
-          <br />
-          <SearchBtn onClick={this.handleFormSubmit}>Search</SearchBtn>
-        </form>
-        <ArticleList articles={this.state.articles}>
-          {this.state.articles.map(article => (
-            <ArticleListItem key={article._id}>
-              <div>
-                <a href={article.web_url} target="_blank">
-                  {article.headline.main}
-                </a>
-              </div>
-              <div>{moment(article.pub_date).format("MMMM DD YYYY")}</div>
-              <AddBtn onClick={this.handleAdd} />
-            </ArticleListItem>
-          ))}
-        </ArticleList>
-      </div>
+      <Container>
+        <div>
+          <Row>
+            <Col size="md-8">
+              <Panel title="Article Search">
+                <Form
+                  handleInputChange={this.handleInputChange}
+                  handleFormSubmit={this.handleFormSubmit}
+                  term={this.state.term}
+                  begin={this.state.begin}
+                  end={this.state.end}
+                />
+              </Panel>
+            </Col>
+          </Row>
+          <ArticleList articles={this.state.articles}>
+            {this.state.articles.map(article => (
+              <ArticleListItem key={article._id}>
+                <div>
+                  <a href={article.web_url} target="_blank">
+                    {article.headline.main}
+                  </a>
+                </div>
+                <div>{moment(article.pub_date).format("MMMM DD YYYY")}</div>
+                <AddBtn onClick={this.handleAdd} />
+              </ArticleListItem>
+            ))}
+          </ArticleList>
+        </div>
+      </Container>
     );
   }
 }
