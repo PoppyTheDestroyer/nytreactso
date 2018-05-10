@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Form from "../components/Form";
-import { ArticleList } from "../components/article_list";
-import { ArticleListItem } from "../components/article_list_item";
-import AddBtn from "../components/add_btn";
-import API from "../utils/API";
-import { Col, Row, Container } from "../components/Grid";
-import Panel from "../components/Panel";
+import Form from "../../components/Form";
+import { ArticleList } from "../../components/article_list";
+import { ArticleListItem } from "../../components/article_list_item";
+import AddBtn from "../../components/add_btn";
+import API from "../../utils/API";
+import { Col, Row, Container } from "../../components/Grid";
+import Panel from "../../components/Panel";
 import moment from "moment";
 
 let year = moment().year();
@@ -91,19 +91,27 @@ class Articles extends Component {
               </Panel>
             </Col>
           </Row>
-          <ArticleList articles={this.state.articles}>
-            {this.state.articles.map(article => (
-              <ArticleListItem key={article._id}>
-                <div>
-                  <a href={article.web_url} target="_blank">
-                    {article.headline.main}
-                  </a>
-                </div>
-                <div>{moment(article.pub_date).format("MMMM DD YYYY")}</div>
-                <AddBtn onClick={this.handleAdd} />
-              </ArticleListItem>
-            ))}
-          </ArticleList>
+          <Row>
+            <Col size="md-8">
+              <Panel title="Results">
+                <ArticleList articles={this.state.articles}>
+                  {this.state.articles.map(article => (
+                    <ArticleListItem key={article._id}>
+                      <div>
+                        <a href={article.web_url} target="_blank">
+                          {article.headline.main}
+                        </a>
+                      </div>
+                      <div>
+                        {moment(article.pub_date).format("MMMM DD YYYY")}
+                      </div>
+                      <AddBtn onClick={this.handleAdd} />
+                    </ArticleListItem>
+                  ))}
+                </ArticleList>
+              </Panel>
+            </Col>
+          </Row>
         </div>
       </Container>
     );

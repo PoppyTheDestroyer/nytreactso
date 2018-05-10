@@ -28,5 +28,18 @@
 }
 
 input {
-  margin: 10px;
+  margin-bottom: 15px;
+}
+
+a {
+  color: #303e4e;
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #98a4a6
+}
+
+a:hover {
+  color: #d45745
 }
